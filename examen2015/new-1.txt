@@ -1,0 +1,126 @@
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------- EVALUATION RESEAU  ---------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+
+
+Correction du partiel Réseau Mars 2015
+
+
+-------------------------------------------
+------------ PARTIE COURS--------------
+-------------------------------------------
+11 points
+
+---1.Principes de la couche Transport et de la couche Application de l'architecture Internet
+	2 Exemple de protocoles pour chacunes des couches dont 1 qui intérargi avec l'autre 
+couche Trransport --> 1er communication de bout en bout  // distant ; couche qui va du terminal de départ au terminal d'arrivé communication de bout en bout, 2 services UPD(ça passe ok, ça passe pas pas grave) et TCP
+couche Application --> 
+SMTP, FTP,  HTTP
+TCP, UDP 
+
+---2. Protocole Tranposrt co et non co 
+	Avantages et Inconvénients 
+protocole connecté TCP on l'utilise en masse 
+non connecté UDP n'est pas co = non fiable= vérifitaion se fait au niveau au dessus, mais simplicité peut remplir la fonction
+dans contexte de réseau local serveur on peut utiliser UDP car réseau local peu de chance d'être saturé 
+
+---3. Principe de controôle de congestion de TCP
+	Décrire le fonctionnement de la fenêtre de congestion (slow start, congestion avoidance)
+contrôle de congestion --> TCP régule sa contibution  à la congestion si on constate que vitesse des paquets augmente 
+									--> pas un problème local, probleme global qui impact sur la co entre 2 serveurs 
+									--> n'envoyer dans le réseau que la quantite d'infor que celui-ci est capable de supporter pour tout le monde // envoyer un nbe limité de paquet
+									--> TCP doit donc tirer des infos sur le réseau 
+									--> calcul du temps de RTT et suivre évolution d'aller/retour pour savoir comment envoyer 
+slow star 						--> on part avec 1, puis on augmente petit à petit mais à un moment on risque d'envoyer triop d'info dans le réseau --> perte d'un paquet (pas de RTT) --> repartir de 0
+congestion avoidance 	--> 
+	
+---4. FTP?, Dans quelle couche ? Quelle application utilise ce protocol? Quel protocol de la couche Application utilise ce protocol ?
+File Transfert Protocol // couche Application // une application de transfert de fichiers // SMTP, HTTP
+
+
+-------------------------------------------
+------------ PARTIE EXERCICE-----------
+-------------------------------------------
+9 points
+
+--4. a)
+																|----------------------------------------------------------------------------------------------------	|	
+																|																																				|
+																|------------------------------------------------------------------------------------------------->	|
+																|		Seq=50 (ds les données véhicluées le 1er octet porte le num 50)										|
+																|		Ack=130 (le prochain que j'attend porte 130) (jusqu'à 129 toiut s'est bien passé )				|
+																|		Data=50 (longueur du paquet)																							|
+																|																																				|
+																|		ATTENTION: Si le 1er octet porte le num50 le 50eme octet porte le numero 99					|
+																|																																				|
+																|	<-------------------------------------------------------------------------------------------------	|
+																|	Seq=120 (envoie 120+..........  mais ATTENTION pas net, un message s'est perdu 					|
+																|												et n'est pas arrivé ds les temps, risque d'arriver + tard  )			|
+																|	Ack=100 																																|
+																|	Data=30 																																|
+																|	Envoie 30octes dont le 1er est num 120																				|
+																|	Délivrer depuis 130 jusqu'à 149 																							|
+																|																																				|
+																|	-------------------------------------------------------------------------------------------------> 	|
+																|	Seq= 100																																|
+																|	Ack=150 																																|
+																|	Data=30																																|
+																|	Envoie de 100 à 129 pour que ça fasse 30 																			|
+																|																																				|
+																|	-------------------------------------------------------------------------------------------------> 	|
+																|	Seq=130																																|
+																|	Ack=150																																|
+																|	Data=30																																|
+																|																																				|
+																|	<-------------------------------------------------------------------------------------------------	|
+																|	Seq= 150																																|
+																|	Ack= 150																																|
+																|	Data=40																																|
+																|	Emis 150 +40 150_189																										|																																						
+																|																																				|
+																|	<-------------------------------------------------------------------------------------------------	|
+																|	Seq= 190																																|
+																|	Ack= 150																																|
+																|	Data=40																																|
+																| 	Emis 190+40= 190_229																										|
+																|																																				|
+																|																																				|
+																|-----------------------------------------------------------------------------------------------------	|
+																
+																
+																
+b) Vu que tout se passe bien la taille de fenêtre est à 4 mais vu qu'on a que 2 paquets à envoyer on garde 2 paquets 
+
+c) On pert un paquet on revient directement à 1, on desscend 
+
+
+-->5. 
+	a)Décrire comment protocole HTTP intérargis avec protocole FTP pour chargement page texte 
+1 seul transfert de fichier
+
+	b)Décrire comment protocole HTTP intérargis avec protocole FTP pour chargement page texte et 2 images 
+Téléchargement le fichier texte et les fichiers contenant les images, 3 transferts de fichiers
+La question est de savoir combien de connexion en // on peut ouvrir 
+Avec FTP on peut ouvir un contrôle pour plusieur fichiers , d'un point à un autre même cible donc un seul contrôle 
+On sait que page composée de 3 fichiers quand : On a téléchargé le fichier structure de la page et interprétation du fichier HTML
+
+	c)Quelles connexions TCP vont êre utilisées 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+																
